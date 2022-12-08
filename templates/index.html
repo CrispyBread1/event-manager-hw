@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+        <h1>Events</h1>
+
+        <form action="/events" method="post">
+          
+          <label for="event">Event Type</label>
+          <input type="text" name="event" id="event">
+
+          <label for="date">Date</label>
+          <input type="text" name="date" id="date">
+
+          <label for="room">Room</label>
+          <input type="text" name="room" id="room">
+
+          <label for="num_guests">Number of guests</label>
+          <input type="text" name="num_guests" id="num_guests">
+          
+          <label for="description">Description</label>
+          <input type="text" name="description" id=description">
+
+          <label for="rec">Recurring</label>
+          <input type="hidden" name="rec" value="off">
+          <input type="checkbox" name="rec" id="rec">
+
+          <input type="submit" value="Submit Event">
+        </form>
+        {% for event in events %}
+        <div>
+          <p>
+            {{ event.event_name }}: <b>{{ event.description }}</b>
+            {{ event.date }}
+            {{ event.room_location }}
+            {% if event.recurring %}
+            <span>&#9200;</span>
+            {% endif %}
+          </p>
+        </div>
+        {% endfor %}
+  {% endblock %}
