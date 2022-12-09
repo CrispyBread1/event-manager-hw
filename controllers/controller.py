@@ -15,19 +15,20 @@ def create():
     event_name = request.form['event']
     number_of_guests = request.form['num_guests']
     room_location = request.form['room']
-    new_event = Event(date, event_name, number_of_guests, room_location, description)
+    recurring = True if 'rec' in request.form else False
+    new_event = Event(date, event_name, number_of_guests, room_location, description, recurring)
     # rec = False
-    recurring = ""
-    recurring = request.form['rec']
+    # recurring = ""
+    # recurring = request.form['rec']
     # print(recurring)
-    if recurring == "on":
-        new_event.recurring()
-        events.append(new_event)
-        return redirect('/events')
+    # if recurring == "off" "on":
+    #     new_event.recurring()
+    #     events.append(new_event)
+    #     return redirect('/events')
 
         # print(rec)
-    else: 
-        pass
+    # else: 
+    #     pass
     
     events.append(new_event)
     return redirect('/events')
